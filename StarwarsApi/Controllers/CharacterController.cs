@@ -55,7 +55,7 @@ namespace StarwarsApi.Controllers
         [Route("{id}")]
         public ActionResult<Character> Get(int id)
         {
-            Character character = Characters.FirstOrDefault(c => c.Id == id);
+            Character? character = Characters.FirstOrDefault(c => c.Id == id);
 
             if(character == null) {
                 return NotFound("no character with that id was found, try a different id");

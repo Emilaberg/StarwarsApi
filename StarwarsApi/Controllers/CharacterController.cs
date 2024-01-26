@@ -76,7 +76,43 @@ namespace StarwarsApi.Controllers
             return Ok("Character Added");
         }
 
+        [HttpPut]
+        public ActionResult Put(int id, Character characterToUpdate)
+        {
+            Character? character = Characters.FirstOrDefault(c => c.Id == id);
+
+            if(character == null || string.IsNullOrEmpty(characterToUpdate.Name))
+            {
+                return NotFound("character not found, check your JSON");
+            }
 
 
+            character.Name = characterToUpdate.Name;
+            character.IsGood = characterToUpdate.IsGood;
+            character.Species = characterToUpdate.Species;
+            character.Gender = characterToUpdate.Gender;
+            character.Height = characterToUpdate.Height;
+            character.Role = characterToUpdate.Role;
+            character.Image = characterToUpdate.Image;
+
+            return Ok("character updated");
+            
+        }
+
+
+        [HttpDelete]
+
+        public ActionResult Delete(int id)
+        {
+            Character? characterToRemove = Characters.FirstOrDefault(c => c.Id == id);
+
+            if (characterToRemove == null)
+            {
+                return NotFound("character not found, check your JSON");
+            }
+
+            Characters.Remove(characterToRemove);
+            return Ok("character removed");
+        }
     }
 }

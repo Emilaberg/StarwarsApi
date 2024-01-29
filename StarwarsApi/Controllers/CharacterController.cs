@@ -77,6 +77,7 @@ namespace StarwarsApi.Controllers
         }
 
         [HttpPut]
+        [Route("{id}")]
         public ActionResult Put(int id, Character characterToUpdate)
         {
             Character? character = Characters.FirstOrDefault(c => c.Id == id);
@@ -101,7 +102,7 @@ namespace StarwarsApi.Controllers
 
 
         [HttpDelete]
-
+        [Route("{id}")]
         public ActionResult Delete(int id)
         {
             Character? characterToRemove = Characters.FirstOrDefault(c => c.Id == id);
